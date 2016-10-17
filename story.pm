@@ -4,13 +4,22 @@ use File::Basename;
 my $svn_repo = config()->{svn_repo};
 my $outdir = config()->{outdir};
 
+my $i;
+
 open ( my $fh, '-|' , "svn list $svn_repo" ) or die $!;
 
 while (my $d = <$fh>){
-   chomp $d; s{\./}[] for $d;
-   set_stdout($d); 
-   run_story( 'submodule-add', { module_name => $d })
 
+   chomp $d;
+
+   next unless $d=~s{/$}[];
+
+   if ( -f "/home/$ENV{USER}/svn-to-git-submodules/cache/$d") {
+     set_stdout("$d already added");
+   } else {
+     run_story( 'submodule-add', { module_name => $d }) 
+   }
+   last if $i++ > 5;
 }
 
 close $fh;
