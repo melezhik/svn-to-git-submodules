@@ -1,1 +1,4 @@
-ok
+generator: <<CODE
+my $mod_name = story_var('module_name');
+[ "regexp: '$mod_name'\\s+(added|already\\s+exists\\s+in\\s+the\\s+index)" ]
+CODE

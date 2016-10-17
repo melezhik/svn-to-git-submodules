@@ -15,6 +15,7 @@ This plugins generates a git submodules entries based on `svn list` command outp
 
     $ sparrow plg run svn-to-git-submodules \
     --param svn_repo=http://svn-repository/projects/list \
+    --param git_repo=http://git-repo/projects \
     --param outdir=/path/to/directory/with/git/repo
 
 # Parameters 
@@ -22,6 +23,20 @@ This plugins generates a git submodules entries based on `svn list` command outp
 ## svn_repo
 
 This should svn repo URL to return a list of directories. Obligatory. No default value.
+
+## git_repo
+
+This should git repo URL. Obligatory. No default value. 
+
+A submodule will be cloned from `git_repo` as :
+
+    git submodule add $git_repo/$directory.git
+
+Where `$directory` is a name of directory in list fetched by 
+
+    svn list $svn_url
+
+command.
 
 ## outdir
 

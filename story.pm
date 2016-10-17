@@ -4,6 +4,8 @@ use File::Basename;
 my $svn_repo = config()->{svn_repo};
 my $outdir = config()->{outdir};
 
+run_story('clear-cache') if config()->{clear_cache};
+
 my $i;
 
 open ( my $fh, '-|' , "svn list $svn_repo" ) or die $!;
