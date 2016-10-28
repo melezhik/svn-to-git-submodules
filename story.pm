@@ -21,7 +21,7 @@ while (my $d = <$fh>){
    } else {
      run_story( 'submodule-add', { module_name => $d }) 
    }
-   last if $i++ > 5;
+   #last if $i++ > 5;
 }
 
 close $fh;
