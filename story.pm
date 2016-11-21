@@ -5,6 +5,7 @@ my $svn_repo = config()->{svn_repo};
 my $outdir = config()->{outdir};
 
 run_story('clear-cache') if config()->{clear_cache};
+run_story('git-pull');
 
 my $i;
 
@@ -26,6 +27,5 @@ while (my $d = <$fh>){
 
 close $fh;
 
-set_stdout('ok');
 
 
